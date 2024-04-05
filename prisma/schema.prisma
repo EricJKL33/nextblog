@@ -28,14 +28,13 @@ model Post {
   //user
 
   //category
-catSlug String
-cat Category @relation(fields: [catSlug], references: [slug])
+  catSlug String
+  cat     Category @relation(fields: [catSlug], references: [slug])
 }
 
-
 model Category {
-  id String @id @default(cuid())
-  slug String @unique
+  id    String  @id @default(cuid())
+  slug  String  @unique
   title String
   image String?
   posts Post[]

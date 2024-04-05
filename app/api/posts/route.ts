@@ -11,7 +11,10 @@ export const GET = async (req: Request) => {
     //slug null || "react"
     const posts = await prisma.post.findMany({
         where:{
-            ...(catSlug && catSlug !== "null" && catSlug !=="" && {catSlug})
+            ...(catSlug && catSlug !== "null" && catSlug !=="" && {catSlug}),
+        },
+        include: {
+          cat: true,
         }
     });
 

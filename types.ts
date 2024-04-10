@@ -19,8 +19,8 @@ export type Post = {
   nbComments: number;
   slug: string;
   content?: string;
-  // createdAt?: Date;
-  // view?: number;
+  createdAt?: Date;
+  view?: number;
 };
 
 

@@ -25,7 +25,6 @@ export default function LoginPage() {
           </Button>
         </div>
       </div>
-      
     </PageContainer>
   );
 }

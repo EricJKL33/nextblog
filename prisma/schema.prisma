@@ -67,7 +67,7 @@ model Post {
   createdAt  DateTime @default(now())
   title      String
   slug       String   @unique
-  constent   String   @db.Text
+  content    String   @db.Text
   image      String?
   view       Int      @default(0)
   nbComments Int      @default(0)

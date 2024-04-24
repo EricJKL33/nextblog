@@ -35,3 +35,27 @@ export const GET = async (req: Request) => {
     );
   }
 };
+
+export const POST = async (req: Request) => {
+  try {
+    const session = await getAuthSession();
+
+    if (!session || !session.user) {
+      return NextResponse.json(
+        { message: "Not Authenticated" },
+        { status: 403 }
+      );
+    }
+    const body = await req.json();
+    const post = await prisma.post.create({
+      data: { ...body, userEmail: session.user.email },
+    });
+    return NextResponse.json(post, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+    // return NextResponse.json(
+    //   { error: "Something went wrong creating the post" },
+    //   { status: 500 }
+  //   );
+  }
+};

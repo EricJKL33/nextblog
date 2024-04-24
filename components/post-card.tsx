@@ -16,7 +16,7 @@ export default function PostCard({ post }: Props) {
         <CardHeader>
           <div className="aspect-square relative">
             <Image
-              src={"/img/mitchell-luo-FWoq_ldWlNQ-unsplash.jpg"}
+              src={post.image || "/img/mitchell-luo-FWoq_ldWlNQ-unsplash.jpg"}
               alt={post.title}
               fill
               className="aspect-square object-cover transition-all duration-300 hover:scale-110"

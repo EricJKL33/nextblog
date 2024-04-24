@@ -21,6 +21,7 @@ export type Post = {
   content?: string;
   createdAt?: Date;
   view?: number;
+  catSlug: string;
 };
 
 

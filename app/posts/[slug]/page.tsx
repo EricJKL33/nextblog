@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { usePost } from "@/hooks/usePost";
 import { Eye, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function SinglePostPage({
   params,
@@ -18,16 +19,14 @@ export default function SinglePostPage({
   if (isFetching) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 
-  return (
+  return ( 
     <PageContainer>
       <div className="p-8">
         <div
-          style={{
-            backgroundImage: "url(/img/mitchell-luo-FWoq_ldWlNQ-unsplash.jpg)",
-          }}
-          className="rounded-lg aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover"
+        className="relative rounded-lg aspect-square md:aspect-[16/9] overflow-hidden bg-cover"
         >
-          <div className="h-full w-full flex flex-col justify-center items-center">
+          <Image src={post?.image ||"/public/img/mitchell-luo-FWoq_ldWlNQ-unsplash.jpg" } alt={post?.title as string } fill objectFit="cover"/>
+          <div className="absolute h-full w-full flex flex-col justify-center items-center">
             <div className="sm:max-w-xl max-w-xs bg-secondary/80 p-4 rounded-lg ">
               <h1 className="text-center font-bold text-3x1 sm:text-5xl text-black dark:text-white">
                 {post?.title}

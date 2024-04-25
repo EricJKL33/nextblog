@@ -1,5 +1,6 @@
 "use client";
 
+import Comments from "@/components/comments";
 import PageContainer from "@/components/page-container";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -60,10 +61,14 @@ export default function SinglePostPage({
           </div>
         </div>
         <Separator />
+
         <div
           className="mt-6"
           dangerouslySetInnerHTML={{ __html: post?.content as string }}
-        ></div>
+        />
+
+        <Comments postSlug={slug} />
+
       </div>
     </PageContainer>
   );

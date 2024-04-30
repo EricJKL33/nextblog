@@ -14,15 +14,21 @@ import { useCategories } from "@/hooks/useCategories";
 import { Category } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useLayoutEffect, useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "react-query";
 import axios from "axios";
 import { Post } from "@/types";
 import { slugify } from "../utils/slugify";
 import Image from "next/image";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(() => import("react-quill"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false,
+});
 
 export default function WritePage() {
   const [title, setTitle] = useState("");
@@ -49,9 +55,11 @@ export default function WritePage() {
 
   const { data: session } = useSession();
 
-  if (!session) {
-    router.replace("/login");
-  }
+  useLayoutEffect(() => {
+    if (!session) {
+      router.replace("/login");
+    }
+  }, [router, session]);
 
   const onChangeFile = (e: SyntheticEvent) => {
     const files = (e.target as HTMLInputElement).files;
